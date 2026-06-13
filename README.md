@@ -8,6 +8,7 @@ Each top-level directory is a self-contained agent or skill:
 
 - `gh-notifications/` — project-scoped agent with a `CLAUDE.md` that triages GitHub notifications.
 - `pr-reviewer/` — reusable skill (`SKILL.md`) for reviewing WordPress Studio PRs.
+- `pr-writer/` — reusable skill (`SKILL.md`) for writing clear, human-oriented PR descriptions.
 - `desktop-mode/` — reusable skill (`SKILL.md`) for authoring WordPress plugins that consume the `desktop-mode` plugin API.
 
 ## Usage
