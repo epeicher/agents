@@ -27,6 +27,8 @@ When there's no PR template, default to these four sections, each kept focused:
 - **Implementation**: how it works now, with code for the non-obvious parts.
 - **Testing instructions**: the concrete steps or test command a reviewer runs to verify.
 
+**Right-size it.** Not every PR needs all four sections. A trivial change (a typo, a one-line tweak, a docs or index update) often needs only a sentence or two; don't pad it to fill the structure. Reach for the full four sections when the change has real behavior, a non-obvious rationale, or verification steps a reviewer must follow. This matters most when there's no PR template anchoring the format.
+
 Use markdown formatting to highlight important details.
 
 ## Writing Guidelines
