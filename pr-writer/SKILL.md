@@ -1,6 +1,6 @@
 ---
 name: pr-writer
-description: Writes clear, punchy, human-oriented PR descriptions that focus on what matters. Use this skill whenever the user asks to write or draft a PR description, write a PR body, describe a pull request, or summarize a branch's changes for review, including phrasings like "write a PR description", "draft the PR", "describe this PR", "what should the PR say", or "rewrite the PR body" (even if they don't say "skill" explicitly). Follows the repo's PULL_REQUEST_TEMPLATE when present, otherwise a What it does / Rationale / Implementation / Testing instructions structure.
+description: Writes clear, punchy, human-oriented PR descriptions that focus on what matters. Use this skill whenever a PR title or body is about to be written, including when opening a PR is one step of a larger request. That covers explicit asks ("write a PR description", "draft the PR", "describe this PR", "what should the PR say", "rewrite the PR body", "summarize this branch for review") AND workflow asks that end in a PR ("open a PR", "create the PR", "make a PR", "commit, push and PR", "ship it as a PR", "update the PR description"), and any time you are about to run `gh pr create` or `gh pr edit --body`. Load it before writing the body, even if the user doesn't say "skill" explicitly. Follows the repo's PULL_REQUEST_TEMPLATE when present, otherwise a What it does / Rationale / Implementation / Testing instructions structure.
 ---
 
 When writing PR descriptions, be concise and structured. Write the right things, not a lot of things.
@@ -17,6 +17,13 @@ git log main..HEAD --oneline
 ```
 
 Replace `main` with the repo's default branch (`trunk`, `master`, etc.). This shows the full scope of changes, not just recent commits.
+
+**Describe the final state, not the journey.** The title and body must describe what the branch delivers NOW. Two different cases:
+
+- **Discarded approaches are fine to mention, with the reason.** "Considered X, but Y" is valuable rationale — it tells future readers why the shipped design won and stops them from re-proposing X.
+- **Features added and then removed during the PR's life must not appear.** They're not an alternative that informed the design; they're scope that no longer exists, and describing them tells a future reader nothing about what merged.
+
+When updating an existing PR after its scope changed, re-read the CURRENT title and body first and strip references to anything the branch no longer contains — titles rot the fastest, because they're written once and forgotten while the body gets edited.
 
 ## Structure
 
@@ -208,6 +215,7 @@ Tests cover `<tr>`, `<option>`, `<li>`, `<td>` fragments and verify they're wrap
 ## What to Avoid
 
 **Don't:**
+- Describe features that were added and later removed during the PR's life (title included) — discarded *approaches* with their reason are fine, removed *scope* is not
 - Use emojis (🚀, 🎉, ✅)
 - Write "enhanced," "improved," "optimized" without specifics
 - List files changed (that's what the diff shows)
