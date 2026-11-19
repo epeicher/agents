@@ -25,6 +25,15 @@ Replace `main` with the repo's default branch (`trunk`, `master`, etc.). This sh
 
 When updating an existing PR after its scope changed, re-read the CURRENT title and body first and strip references to anything the branch no longer contains — titles rot the fastest, because they're written once and forgotten while the body gets edited.
 
+## When another skill is creating the PR
+
+Sometimes this skill loads inside another skill that opens or updates the PR, such as `compound-engineering:ce-commit-push-pr`, `compound-engineering:lfg`, or a resolve-feedback flow. In that case the two work together:
+
+- **This skill decides the content and the writing style**: the repo template, the sections, the voice, and every required line (for example `Closes GOOWOO-xxxx` and `### Changelog entry`). If the other skill's format differs from the repo template, follow the template.
+- **The other skill keeps what it adds to the body.** Keep its footer or badge block (for example the `Built with Compound Engineering` badge and the harness badge after a `---` rule) and any sections it requires (for example `## Residual Review Findings` or `## CI Failures Unresolved`), exactly as it specifies, at the end of the body. Do not remove them as bot signatures; the "no bot signatures" rule below covers text you would add on your own, not output another skill requires.
+- **Leave the other skill's process alone**: committing, pushing, branch creation, evidence capture, and the `gh` commands it runs. Only the title and body text pass through this skill.
+- When updating a PR body that already has another skill's footer, badge, or required sections, keep them.
+
 ## Structure
 
 When there's no PR template, default to these four sections, each kept focused:
@@ -219,7 +228,7 @@ Tests cover `<tr>`, `<option>`, `<li>`, `<td>` fragments and verify they're wrap
 - Use emojis (🚀, 🎉, ✅)
 - Write "enhanced," "improved," "optimized" without specifics
 - List files changed (that's what the diff shows)
-- Add bot signatures
+- Add bot signatures on your own (a footer or badge that another skill creating the PR requires is not one: keep it, see "When another skill is creating the PR")
 - Use corporate buzzwords: "leverage," "synergy," "robust," "scalable," "enterprise-grade"
 - Write "key functionalities," "core capabilities," "key improvements"
 - Create bullet lists of vague changes
